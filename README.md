@@ -39,8 +39,12 @@ Depois abra http://localhost:8000.
 
 1. **Settings → Pages → Build and deployment → Source**: escolha **GitHub Actions**.
 2. **Settings → Pages → Custom domain**: digite `kathekesis.com.br` e salve. Marque **Enforce HTTPS** quando aparecer.
-3. No registro do domínio (Registro.br), aponte o DNS para o GitHub Pages:
-   - 4 registros **A** para `kathekesis.com.br`: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
-   - 1 registro **CNAME** para `www`: `SEU-USUARIO.github.io`
+3. Na Hostinger, onde o domínio foi registrado, aponte o DNS para o GitHub Pages.
+   Caminho: **hPanel → Domínios → (seu domínio) → DNS / Nameservers → Registros DNS**.
+   - Apague os registros **A** de nome `@` e o **CNAME** de nome `www` que a Hostinger cria por padrão (eles apontam para a página "em construção" da Hostinger).
+   - Crie 4 registros **A** com nome `@`, um para cada endereço: `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`
+   - Crie 1 registro **CNAME** com nome `www` apontando para `SEU-USUARIO.github.io`
+   - A mudança pode levar de alguns minutos até 24 horas para valer.
+   - Não é preciso contratar hospedagem na Hostinger: o site fica no GitHub Pages, de graça. Só o domínio é pago.
 
 Observação: o GitHub pausa tarefas agendadas em repositórios sem nenhuma alteração por 60 dias. Se isso acontecer, ele avisa por e-mail; basta clicar para reativar.
