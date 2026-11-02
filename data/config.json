@@ -4,7 +4,40 @@
   "dominio": "kathekesis.com.br",
   "canal_id": "UC72smwot-1L-Il_2tw842aA",
   "canal_url": "https://www.youtube.com/@kathekesis",
-  "via_catolica": "https://viacatolica.com.br",
+  "fontes": [
+    {
+      "nome": "Via Católica",
+      "url": "https://viacatolica.com.br",
+      "categorias": null,
+      "tema_pelo": "endereco",
+      "temas": {
+        "aparicoes-de-nossa-senhora": "Nossa Senhora",
+        "historia-da-igreja": "História da Igreja",
+        "historia-das-heresias": "Heresias",
+        "milagres": "Milagres",
+        "oracoes-catolicas": "Orações",
+        "protestantismo": "Apologética",
+        "sagrada-escritura-e-doutrina": "Escritura e doutrina",
+        "artigos": "Escritura e doutrina"
+      }
+    },
+    {
+      "nome": "Ideias em Conserva",
+      "url": "https://ideiasemconserva.com.br",
+      "categorias": [3, 32, 5, 14, 6, 11, 4],
+      "tema_pelo": "categoria",
+      "temas": {
+        "aparicoes-de-nossa-senhora": "Nossa Senhora",
+        "vida-dos-santos": "Vida dos santos",
+        "historia-da-igreja": "História da Igreja",
+        "doutrina-catolica": "Escritura e doutrina",
+        "estudos-catolicos": "Escritura e doutrina",
+        "liturgia-diaria": "Orações",
+        "catolicismo": "Orações"
+      }
+    }
+  ],
+  "destaques_catecismo": ["didaque-a-instrucao-dos-doze-apostolos-texto-completo"],
   "loja_url": null,
   "redes": [
     {"rede": "youtube", "nome": "YouTube", "conta": "@kathekesis", "url": "https://www.youtube.com/@kathekesis"},

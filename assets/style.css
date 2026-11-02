@@ -288,3 +288,9 @@ img { max-width: 100%; }
 .btn[aria-disabled="true"] { opacity: .7; cursor: default; }
 #art-more { border: 0; cursor: pointer; }
 .pillar a { color: var(--gold); }
+.destaque { display: grid; gap: 6px; margin: 22px 0 6px; padding: 20px 22px; background: var(--lapis); color: var(--on-lapis); text-decoration: none; border: 1px solid var(--brand-gold); }
+.destaque .eyebrow { color: var(--brand-gold); }
+.destaque b { font-family: var(--display); font-weight: 400; font-size: 1.4rem; }
+.destaque .dsum { opacity: .9; font-size: 1rem; }
+.destaque .dlink { font-family: var(--label); letter-spacing: .05em; color: var(--brand-gold); }
+.destaque:hover { filter: brightness(1.08); }

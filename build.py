@@ -2,11 +2,14 @@
 """Gera o site do Kathekésis na pasta _site/.
 
 Busca os vídeos mais recentes do canal (feed público do YouTube) e os artigos
-do Via Católica (API pública do WordPress). Se alguma busca falhar, usa a
-última cópia salva em data/cache/, para o site nunca sair do ar por isso.
+dos sites parceiros listados em data/config.json (API pública do WordPress).
+Se alguma busca falhar, usa a última cópia salva em data/cache/, para o site
+nunca sair do ar por isso.
 
-Uso:  python build.py            (busca tudo e gera o site)
-      python build.py --offline  (usa só as cópias salvas)
+Uso:  python build.py              (busca tudo e gera o site em _site/)
+      python build.py --offline    (usa só as cópias salvas)
+      python build.py --preview    (gera uma prévia em _preview/, com links
+                                    relativos e capas baixadas, para abrir sem servidor)
 """
 import datetime
 import html
@@ -22,7 +25,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data"
 CACHE = DATA / "cache"
-OUT = ROOT / "_site"
+PREVIEW = "--preview" in sys.argv
+OUT = ROOT / ("_preview" if PREVIEW else "_site")
 OFFLINE = "--offline" in sys.argv
 
 CFG = json.loads((DATA / "config.json").read_text(encoding="utf-8"))
@@ -33,23 +37,28 @@ UA = "KathekesisSite/1.0 (+%s)" % SITE
 MESES = ["jan", "fev", "mar", "abr", "mai", "jun", "jul", "ago", "set", "out", "nov", "dez"]
 MESES_LONGOS = ["janeiro", "fevereiro", "março", "abril", "maio", "junho", "julho",
                 "agosto", "setembro", "outubro", "novembro", "dezembro"]
-TEMAS = {
-    "aparicoes-de-nossa-senhora": "Nossa Senhora",
-    "historia-da-igreja": "História da Igreja",
-    "historia-das-heresias": "Heresias",
-    "milagres": "Milagres",
-    "oracoes-catolicas": "Orações",
-    "protestantismo": "Apologética",
-    "sagrada-escritura-e-doutrina": "Escritura e doutrina",
-    "artigos": "Escritura e doutrina",
-}
-ORDEM_TEMAS = ["História da Igreja", "Heresias", "Milagres", "Orações", "Nossa Senhora",
+ORDEM_TEMAS = ["História da Igreja", "Heresias", "Milagres", "Orações", "Nossa Senhora", "Vida dos santos",
                "Escritura e doutrina", "Apologética", "Outros"]
 
 
+ATUAL = "/"  # página sendo gerada; os links internos são relativos a ela
+
+
 def u(path):
-    """Endereço interno do site, respeitando o base_path."""
-    return BASE + path
+    """Endereço interno relativo à página atual.
+
+    Links relativos funcionam no domínio próprio, no endereço provisório do
+    GitHub (usuario.github.io/repositorio/) e na prévia sem servidor.
+    """
+    alvo, _, ancora = path.partition("#")
+    profundidade = ATUAL.strip("/").count("/") + 1 if ATUAL.strip("/") else 0
+    prefixo = "../" * profundidade
+    if PREVIEW and (alvo == "" or alvo.endswith("/")):
+        alvo += "index.html"
+    rel = prefixo + alvo.lstrip("/")
+    if not rel:
+        rel = "./"
+    return rel + ("#" + ancora if ancora else "")
 
 
 def esc(t):
@@ -130,11 +139,25 @@ def fmt_views(n):
     return f"{n} visualização" if n == 1 else f"{n} visualizações"
 
 
+CAPAS_BAIXADAS = set()
+
+
 def capa(vid):
-    return f"https://i.ytimg.com/vi/{vid}/hq720.jpg"
+    url = f"https://i.ytimg.com/vi/{vid}/hq720.jpg"
+    if not PREVIEW:
+        return url
+    # a prévia não pode carregar imagens de outros sites: baixa a capa junto
+    destino = OUT / "assets" / "capas" / f"{vid}.jpg"
+    if vid not in CAPAS_BAIXADAS and not destino.exists():
+        destino.parent.mkdir(parents=True, exist_ok=True)
+        req = urllib.request.Request(url, headers={"User-Agent": UA})
+        with urllib.request.urlopen(req, timeout=40) as r:
+            destino.write_bytes(r.read())
+    CAPAS_BAIXADAS.add(vid)
+    return u(f"/assets/capas/{vid}.jpg")
 
 
-# ---------------------------------------------------------------- Via Católica
+# ---------------------------------------------------------------- Sites parceiros (WordPress)
 
 KEEP = {"p", "h2", "h3", "h4", "ul", "ol", "li", "strong", "em", "br", "blockquote", "a",
         "details", "summary", "sup", "mark", "table", "thead", "tbody", "tr", "th", "td"}
@@ -189,21 +212,59 @@ class Limpador(HTMLParser):
             self.o.append(html.escape(d, quote=False))
 
 
-def buscar_artigos():
-    base = CFG["via_catolica"].rstrip("/") + "/wp-json/wp/v2/posts"
-    campos = "id,slug,date,modified,link,title,content,excerpt"
+def posts_wordpress(fonte):
+    base = fonte["url"].rstrip("/") + "/wp-json/wp/v2"
+    campos = "id,slug,date,modified,link,title,content,excerpt,categories"
+    filtro = ("&categories=" + ",".join(map(str, fonte["categorias"]))) if fonte.get("categorias") else ""
     posts, pagina, total = [], 1, 1
     while pagina <= total:
-        txt, hdr = baixar(f"{base}?per_page=50&page={pagina}&_fields={campos}", "application/json")
+        txt, hdr = baixar(f"{base}/posts?per_page=50&page={pagina}&_fields={campos}{filtro}", "application/json")
         total = int({k.lower(): v for k, v in hdr.items()}.get("x-wp-totalpages", 1))
         posts += json.loads(txt)
         pagina += 1
+    cats = {}
+    if fonte.get("tema_pelo") == "categoria":
+        txt, _ = baixar(f"{base}/categories?per_page=100&_fields=id,slug", "application/json")
+        cats = {c["id"]: c["slug"] for c in json.loads(txt)}
     if not posts:
-        raise ValueError("nenhum artigo")
-    internos = {p["link"].rstrip("/"): p["slug"] for p in posts}
+        raise ValueError(f"nenhum artigo em {fonte['nome']}")
+    return posts, cats
+
+
+def tema_do_post(p, fonte, cats):
+    temas = fonte["temas"]
+    if fonte.get("tema_pelo") == "categoria":
+        slugs = [cats.get(i) for i in p.get("categories", [])]
+        for chave in temas:  # a ordem no config define a prioridade
+            if chave in slugs:
+                return temas[chave]
+        return "Outros"
+    secao = p["link"].split("://", 1)[1].split("/")[1]
+    return temas.get(secao, "Outros")
+
+
+def montar_artigos():
+    brutos = []
+    for fonte in CFG["fontes"]:
+        nome = "fonte-" + re.sub(r"[^a-z0-9]+", "-", fonte["url"].split("://")[1].lower()).strip("-")
+
+        def buscar(fonte=fonte):
+            posts, cats = posts_wordpress(fonte)
+            return {"posts": posts, "cats": {str(k): v for k, v in cats.items()}}
+        dados = com_cache(nome, buscar)
+        cats = {int(k): v for k, v in dados["cats"].items()}
+        brutos += [(p, fonte, cats) for p in dados["posts"]]
+    # endereço final de cada artigo; se dois sites usarem o mesmo slug, o segundo ganha um sufixo
+    usados, slug_final = set(), {}
+    for p, fonte, _ in brutos:
+        s = p["slug"]
+        if s in usados:
+            s = s + "-" + re.sub(r"[^a-z]", "", fonte["nome"].lower())[:12]
+        usados.add(s)
+        slug_final[p["link"].rstrip("/")] = s
     arts = []
-    for p in posts:
-        lim = Limpador(internos)
+    for p, fonte, cats in brutos:
+        lim = Limpador(slug_final)
         lim.feed(p["content"]["rendered"])
         corpo = "".join(lim.o)
         corpo = re.sub(r"<(p|li|h[2-4]|strong|em)>\s*</\1>", "", corpo)
@@ -212,11 +273,10 @@ def buscar_artigos():
         resumo = re.sub(r"\s*\[(…|&hellip;|\.\.\.)\]\s*$", "", resumo).strip()
         if len(resumo) > 170:
             resumo = resumo[:170].rsplit(" ", 1)[0] + "…"
-        secao = p["link"].split("://", 1)[1].split("/")[1]
-        arts.append({"slug": p["slug"], "titulo": html.unescape(p["title"]["rendered"]),
+        arts.append({"slug": slug_final[p["link"].rstrip("/")], "titulo": html.unescape(p["title"]["rendered"]),
                      "data": p["date"][:10], "atualizado": p["modified"][:10],
-                     "original": p["link"], "tema": TEMAS.get(secao, "Outros"),
-                     "resumo": resumo, "corpo": corpo})
+                     "original": p["link"], "fonte": fonte["nome"], "fonte_url": fonte["url"],
+                     "tema": tema_do_post(p, fonte, cats), "resumo": resumo, "corpo": corpo})
     arts.sort(key=lambda a: a["data"], reverse=True)
     return arts
 
@@ -354,6 +414,8 @@ def gerar_inicio(videos, numeros, artigos, vmap):
     chips += [f'<button class="chip" type="button" data-tema="{esc(t)}" aria-pressed="false">{esc(t)}<span>{contagem[t]}</span></button>'
               for t in ORDEM_TEMAS if t in contagem]
     lista = "\n".join(card_artigo(a, video=a["slug"] in vmap) for a in artigos)
+    nomes = [f'<a href="{esc(f["url"])}/" target="_blank" rel="noopener">{esc(f["nome"])}</a>' for f in CFG["fontes"]]
+    parceiros = nomes[0] if len(nomes) == 1 else ", ".join(nomes[:-1]) + " e " + nomes[-1]
     corpo = f"""<main id="inicio">
   <section class="hero">
     <div class="wrap">
@@ -414,7 +476,7 @@ def gerar_inicio(videos, numeros, artigos, vmap):
     <div class="wrap">
       <div class="eyebrow">estudos</div>
       <h2 class="sec-title">Artigos</h2>
-      <p class="partner">Estudos sobre história da Igreja, heresias, milagres e orações, escritos pelo nosso parceiro <a href="{esc(CFG['via_catolica'])}/" target="_blank" rel="noopener">Via Católica</a> e publicados aqui com autorização.</p>
+      <p class="partner">Estudos sobre história da Igreja, heresias, milagres e orações, escritos pelos sites parceiros {parceiros} e publicados aqui com autorização.</p>
       <div class="art-tools">
         <div class="chips" id="chips" role="group" aria-label="Filtrar por tema">{''.join(chips)}</div>
         <input class="search" id="art-search" type="search" placeholder="Buscar artigo" aria-label="Buscar artigo">
@@ -482,18 +544,18 @@ def gerar_artigo(a, artigos, vmap):
     <a class="back" href="{u('/#artigos')}">← Todos os artigos</a>
     <div class="eyebrow" style="margin-top: 22px;">{esc(a['tema'])}</div>
     <h1>{esc(a['titulo'])}</h1>
-    <div class="credit">Publicado originalmente no <a href="{esc(a['original'])}" target="_blank" rel="noopener">Via Católica</a></div>
+    <div class="credit">Publicado originalmente no <a href="{esc(a['original'])}" target="_blank" rel="noopener">{esc(a['fonte'])}</a></div>
 {caixa_video}
     <div class="prose">
 {a['corpo']}
     </div>
-    <div class="endnote"><p>Este artigo foi publicado originalmente no <a href="{esc(a['original'])}" target="_blank" rel="noopener">Via Católica</a> e é reproduzido aqui com autorização. Quer se aprofundar? Conheça os livros da <a href="{u('/#livraria')}">Kathekésis Livraria</a>.</p></div>
+    <div class="endnote"><p>Este artigo foi publicado originalmente no <a href="{esc(a['original'])}" target="_blank" rel="noopener">{esc(a['fonte'])}</a> e é reproduzido aqui com autorização. Quer se aprofundar? Conheça os livros da <a href="{u('/#livraria')}">Kathekésis Livraria</a>.</p></div>
     <div class="related"><div class="eyebrow">continue lendo</div><h2>Mais em {esc(a['tema'])}</h2><div class="art-list">
 {rel_html}
     </div></div>
   </div>
 </article>"""
-    # canonical aponta para o original no Via Católica (evita conteúdo duplicado no Google)
+    # canonical aponta para o original no site parceiro (evita conteúdo duplicado no Google)
     return pagina(f"{a['titulo']} · Kathekésis", a["resumo"], f"/artigos/{a['slug']}/", corpo, canonical=a["original"])
 
 
@@ -565,6 +627,16 @@ def gerar_catecismo(cat, artigos):
             idx_comp.append({"t": s["t"], "u": s["u"], "a0": s["q"][0], "a1": s["q"][1]})
     idx = json.dumps({"cic": idx_cic, "comp": idx_comp, "intro": cat["compIntro"]}, ensure_ascii=False).replace("</", "<\\/")
 
+    destaque = ""
+    for slug in CFG.get("destaques_catecismo", []):
+        a = por_slug.get(slug)
+        if a:
+            destaque += f"""    <a class="destaque" href="{u('/artigos/%s/' % a['slug'])}">
+      <span class="eyebrow">dos primeiros cristãos · texto completo</span>
+      <b>{esc(a['titulo'])}</b>
+      <span class="dsum">{esc(a['resumo'])}</span>
+      <span class="dlink">Ler no site →</span>
+    </a>"""
     corpo = f"""<div id="catecismo-view">
   <div class="cat-hero">
     <div class="wrap cat-wrap">
@@ -585,6 +657,7 @@ def gerar_catecismo(cat, artigos):
       <button class="btn btn-lapis" type="submit">Localizar</button>
       <div class="jump-out" id="jump-out" aria-live="polite"></div>
     </form>
+{destaque}
     <div id="painel-cic" role="tabpanel" aria-labelledby="tab-cic">{''.join(cic)}</div>
     <div id="painel-comp" role="tabpanel" aria-labelledby="tab-comp" hidden>{''.join(comp)}</div>
     <p class="cnote">Texto oficial © Libreria Editrice Vaticana, publicado em <a class="ext" href="{esc(cat['cicIndex'])}" target="_blank" rel="noopener">vatican.va</a>. Os resumos das partes foram escritos pela equipe Kathekésis.</p>
@@ -605,7 +678,18 @@ def gerar_404():
     return pagina("Página não encontrada · Kathekésis", "Página não encontrada.", "/404.html", corpo)
 
 
+def em(caminho):
+    """Define a página atual, para os links relativos."""
+    global ATUAL
+    ATUAL = caminho
+
+
 def escrever(caminho, conteudo):
+    if PREVIEW and caminho == "index.html":
+        # a página principal da prévia recebe o esqueleto do próprio visualizador
+        conteudo = conteudo.split("<head>\n", 1)[1].replace("</head>\n<body>\n", "", 1)
+        conteudo = conteudo.replace("</body>\n</html>\n", "")
+        conteudo = conteudo.replace('<meta charset="utf-8">\n', "", 1)
     arq = OUT / caminho
     arq.parent.mkdir(parents=True, exist_ok=True)
     arq.write_text(conteudo, encoding="utf-8")
@@ -614,26 +698,30 @@ def escrever(caminho, conteudo):
 def main():
     videos = com_cache("videos", buscar_videos)
     numeros = com_cache("numeros", buscar_numeros)
-    artigos = com_cache("artigos", buscar_artigos)
+    artigos = montar_artigos()
     vmap = json.loads((DATA / "videos_artigos.json").read_text(encoding="utf-8"))
     cat = json.loads((DATA / "catecismo.json").read_text(encoding="utf-8"))
 
     if OUT.exists():
         shutil.rmtree(OUT)
     shutil.copytree(ROOT / "assets", OUT / "assets")
+    em("/")
     escrever("index.html", gerar_inicio(videos, numeros, artigos, vmap))
     for a in artigos:
+        em(f"/artigos/{a['slug']}/")
         escrever(f"artigos/{a['slug']}/index.html", gerar_artigo(a, artigos, vmap))
+    em("/catecismo/")
     escrever("catecismo/index.html", gerar_catecismo(cat, artigos))
+    em("/")
     escrever("404.html", gerar_404())
 
     hoje = datetime.date.today().isoformat()
     urls = [(SITE + "/", hoje), (SITE + "/catecismo/", hoje)]
-    # os artigos ficam fora do sitemap: o canonical deles aponta para o Via Católica
+    # os artigos ficam fora do sitemap: o canonical deles aponta para o site parceiro
     mapa = "\n".join(f"  <url><loc>{esc(l)}</loc><lastmod>{d}</lastmod></url>" for l, d in urls)
     escrever("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{mapa}\n</urlset>\n')
     escrever("robots.txt", f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
-    if CFG.get("dominio"):
+    if CFG.get("dominio") and not PREVIEW:
         escrever("CNAME", CFG["dominio"] + "\n")
     escrever(".nojekyll", "")
     print(f"[ok] site gerado em {OUT}: {len(artigos)} artigos, {len(videos[:6])} vídeos recentes")
