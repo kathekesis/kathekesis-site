@@ -1,0 +1,935 @@
+{
+ "pro": {
+  "t": "Prólogo",
+  "a0": 1,
+  "a1": 25,
+  "u": "https://www.vatican.va/archive/cathechism_po/index_new/prologo%201-25_po.html"
+ },
+ "cic": [
+  {
+   "t": "A profissão da fé",
+   "u": "https://www.vatican.va/archive/cathechism_po/index_new/index-prima-parte_po.html",
+   "secs": [
+    {
+     "t": "«Eu creio» – «Nós cremos»",
+     "items": [
+      {
+       "t": "Capítulo primeiro: O homem é «capaz» de Deus",
+       "a0": 27,
+       "a1": 49,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c1_26-49_po.html",
+       "arts": []
+      },
+      {
+       "t": "Capítulo segundo: Deus ao encontro do homem",
+       "a0": 50,
+       "a1": 141,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c2_50-141_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: A Revelação de Deus",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c2_50-141_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: A transmissão da Revelação divina",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c2_50-141_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: A Sagrada Escritura",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c2_50-141_po.html#ARTIGO_3_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo terceiro: A resposta do homem a Deus",
+       "a0": 142,
+       "a1": 184,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c3_142-184_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: Eu creio",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c3_142-184_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: Nós cremos",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c3_142-184_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "O Credo",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s1c3_142-184_po.html#CREDO"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "A profissão da fé cristã",
+     "items": [
+      {
+       "t": "Os símbolos da fé",
+       "a0": 185,
+       "a1": 197,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2_185-197_po.html",
+       "arts": []
+      },
+      {
+       "t": "Capítulo primeiro: Creio em Deus Pai",
+       "a0": 198,
+       "a1": 421,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: «Creio em Deus Pai Todo-Poderoso, Criador do céu e da terra»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Parágrafo 1: Creio em Deus",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#PARÁGRAFO_1_"
+        },
+        {
+         "t": "Parágrafo 2: O Pai",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#PARÁGRAFO_2_"
+        },
+        {
+         "t": "Parágrafo 3: O Todo-Poderoso",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#PARÁGRAFO_3_"
+        },
+        {
+         "t": "Parágrafo 4: O Criador",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#PARÁGRAFO_4_"
+        },
+        {
+         "t": "Parágrafo 5: O céu e a terra",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#PARÁGRAFO_5__"
+        },
+        {
+         "t": "Parágrafo 6: O homem",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#PARÁGRAFO_6_"
+        },
+        {
+         "t": "Parágrafo 7: A queda",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2c1_198-421_po.html#PARÁGRAFO_7_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo segundo: Creio em Jesus Cristo, Filho Único de Deus",
+       "a0": 422,
+       "a1": 682,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html",
+       "arts": [
+        {
+         "t": "Artigo 2: «E em Jesus Cristo, seu Filho único, Nosso Senhor»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: «Jesus Cristo foi concebido pelo Espírito Santo e nasceu da Virgem Maria»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html#ARTIGO_3_"
+        },
+        {
+         "t": "Parágrafo 1: O Filho de Deus fez-Se homem",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Parágrafo 2: «... Concebido pelo Espírito Santo, nascido da Virgem Maria»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Parágrafo 3: Os Mistérios da vida de Cristo",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Artigo 4: «Jesus Cristo padeceu sob Pôncio Pilatos, foi crucificado, morto e sepultado»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html#ARTIGO_4_"
+        },
+        {
+         "t": "Parágrafo 1: Jesus e Israel",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Parágrafo 2: Jesus morreu crucificado",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Parágrafo 3: Jesus Cristo foi sepultado",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Artigo 5: «Jesus Cristo desceu à mansão dos mortos, ao terceiro dia ressuscitou dos mortos»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html#ARTIGO_5_"
+        },
+        {
+         "t": "Parágrafo 1: Cristo desceu à mansão dos mortos",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Parágrafo 2: Ao terceiro dia ressuscitou dos mortos",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html"
+        },
+        {
+         "t": "Artigo 6: «Jesus subiu aos céus e está sentado à direita de Deus, Pai Todo-poderoso",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html#ARTIGO_6_"
+        },
+        {
+         "t": "Artigo 7: «Donde há-de vir julgar os vivos e os mortos»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap2_422-682_po.html#ARTIGO_7_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo terceiro: Creio no Espírito Santo",
+       "a0": 683,
+       "a1": 1065,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html",
+       "arts": [
+        {
+         "t": "Artigo 8: «Creio no Espírito Santo»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#ARTIGO_8_"
+        },
+        {
+         "t": "Artigo 9: «Creio na Santa Igreja Católica»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#ARTIGO_9_"
+        },
+        {
+         "t": "Parágrafo 1: A Igreja no Desígnio de Deus",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#PARÁGRAFO_1_"
+        },
+        {
+         "t": "Parágrafo 2: A Igreja – Povo de Deus, Corpo de Cristo, Templo do Espírito Santo",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#PARÁGRAFO_2_"
+        },
+        {
+         "t": "Parágrafo 3: A Igreja é una, santa, católica e apostólica",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#PARÁGRAFO_3_"
+        },
+        {
+         "t": "Parágrafo 4: Os fiéis de Cristo – Hierarquia, leigos, Vida consagrada",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#PARÁGRAFO_4_"
+        },
+        {
+         "t": "Parágrafo 5: A comunhão dos santos",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#PARÁGRAFO_5_"
+        },
+        {
+         "t": "Parágrafo 6: Maria – Mãe de Cristo, Mãe da Igreja",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#PARÁGRAFO_6_"
+        },
+        {
+         "t": "Artigo 10: «Creio na remissão dos pecados»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#ARTIGO_10_"
+        },
+        {
+         "t": "Artigo 11: «Creio na ressurreição da carne»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#ARTIGO_11_"
+        },
+        {
+         "t": "Artigo 12: «Creio na vida eterna»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p1s2cap3_683-1065_po.html#ARTIGO_12_"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sum": "O que a Igreja crê: como Deus se revela, a resposta da fé e o Credo explicado artigo por artigo.",
+   "a0": 26,
+   "a1": 1065,
+   "rel": [
+    "patristica-conceito-e-importancia",
+    "sola-scriptura-a-ilusao-protestante-e-a-verdade-da-tradicao-apostolica",
+    "o-arianismo-heresia-devastadora-dos-primeiros-seculos",
+    "quem-foi-o-primeiro-papa"
+   ]
+  },
+  {
+   "t": "A celebração do mistério cristão",
+   "u": "https://www.vatican.va/archive/cathechism_po/index_new/index-seconda-parte_po.html",
+   "secs": [
+    {
+     "t": null,
+     "items": [
+      {
+       "t": "Introdução",
+       "a0": 1066,
+       "a1": 1075,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s1cap1_1066-1075_po.html",
+       "arts": []
+      }
+     ]
+    },
+    {
+     "t": "A economia sacramental",
+     "items": [
+      {
+       "t": "Capítulo primeiro: O mistério pascal no tempo da Igreja",
+       "a0": 1076,
+       "a1": 1134,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s1cap1_1076-1134_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: A Liturgia – obra da Santíssima Trindade",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s1cap1_1076-1134_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: O Mistério Pascal nos sacramentos da Igreja",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s1cap1_1076-1134_po.html#ARTIGO_2_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo segundo: A celebração sacramental do mistério pascal",
+       "a0": 1135,
+       "a1": 1209,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s1cap2_1135-1209_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: Celebrar a liturgia da Igreja",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s1cap2_1135-1209_po.html"
+        },
+        {
+         "t": "Artigo 2: Diversidade litúrgica e unidade do mistério",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s1cap2_1135-1209_po.html"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "Os sete sacramentos da Igreja",
+     "items": [
+      {
+       "t": "Introdução da seção",
+       "a0": 1210,
+       "a1": 1211,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1210-1419_po.html",
+       "arts": []
+      },
+      {
+       "t": "Capítulo primeiro: Os sacramentos da iniciação cristã",
+       "a0": 1212,
+       "a1": 1419,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1210-1419_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: O sacramento do Baptismo",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1210-1419_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: O sacramento da Confirmação",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1210-1419_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: O sacramento da Eucaristia",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1210-1419_po.html#ARTIGO_3_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo segundo: Os sacramentos de cura",
+       "a0": 1420,
+       "a1": 1532,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1420-1532_po.html",
+       "arts": [
+        {
+         "t": "Artigo 4: O sacramento da Penitência e da Reconciliação",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1420-1532_po.html"
+        },
+        {
+         "t": "Artigo 5: A Unção dos enfermos",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap1_1420-1532_po.html#ARTIGO_5_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo terceiro: Os sacramentos do serviço da comunhão",
+       "a0": 1533,
+       "a1": 1666,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap3_1533-1666_po.html",
+       "arts": [
+        {
+         "t": "Artigo 6: O sacramento da Ordem",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap3_1533-1666_po.html#ARTIGO_6_"
+        },
+        {
+         "t": "Artigo 7: O sacramento do Matrimónio",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap3_1533-1666_po.html#ARTIGO_7_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo quarto: As outras celebrações litúrgicas",
+       "a0": 1667,
+       "a1": 1690,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap4_1667-1690_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: Os sacramentais",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap4_1667-1690_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: As exéquias cristãs",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p2s2cap4_1667-1690_po.html#ARTIGO_2_"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sum": "Como a Igreja celebra a fé: a liturgia e os sete sacramentos, do Batismo ao Matrimônio.",
+   "a0": 1066,
+   "a1": 1690,
+   "rel": [
+    "batismo-significado-biblico-e-teologico",
+    "por-que-a-igreja-catolica-batiza-criancas",
+    "milagres-eucaristicos",
+    "milagre-eucaristico-de-lanciano"
+   ]
+  },
+  {
+   "t": "A vida em Cristo",
+   "u": "https://www.vatican.va/archive/cathechism_po/index_new/index-terza-parte_po.html",
+   "secs": [
+    {
+     "t": null,
+     "items": [
+      {
+       "t": "Introdução",
+       "a0": 1691,
+       "a1": 1698,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3-intr_1691-1698_po.html",
+       "arts": []
+      }
+     ]
+    },
+    {
+     "t": "A vocação do homem: A vida no Espírito",
+     "items": [
+      {
+       "t": "Introdução da seção",
+       "a0": 1699,
+       "a1": 1699,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html",
+       "arts": []
+      },
+      {
+       "t": "Capítulo primeiro: A dignidade da pessoa humana",
+       "a0": 1700,
+       "a1": 1876,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: O homem, imagem de Deus",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: A nossa vocação à bem-aventurança",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: A liberdade do homem",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_3_"
+        },
+        {
+         "t": "Artigo 4: A moralidade dos actos humanos",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_4_"
+        },
+        {
+         "t": "Artigo 5: A moralidade das paixões",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_5_"
+        },
+        {
+         "t": "Artigo 6: A consciência moral",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_6_"
+        },
+        {
+         "t": "Artigo 7: As virtudes",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_7_"
+        },
+        {
+         "t": "Artigo 8: O pecado",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap1_1699-1876_po.html#ARTIGO_8_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo segundo: A comunidade humana",
+       "a0": 1877,
+       "a1": 1948,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap2_1877-1948_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: A Pessoa e a Sociedade",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap2_1877-1948_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: A participação na vida social",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap2_1877-1948_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: A Justiça Social",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap2_1877-1948_po.html#ARTIGO_3_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo terceiro: A salvação de Deus: A lei e a graça",
+       "a0": 1949,
+       "a1": 2051,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap3_1949-2051_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: A lei moral",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap3_1949-2051_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: Graça e justificação",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap3_1949-2051_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: A Igreja. Mãe e educadora",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap3_1949-2051_po.html#ARTIGO_3_"
+        },
+        {
+         "t": "Os Dez Mandamentos (quadro)",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s1cap3_1949-2051_po.html#OS_DEZ_MANDAMENTOS__"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "Os dez mandamentos",
+     "items": [
+      {
+       "t": "Introdução da seção",
+       "a0": 2052,
+       "a1": 2082,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2-intr_2052-2082_po.html",
+       "arts": []
+      },
+      {
+       "t": "Capítulo primeiro: «Amarás o Senhor teu Deus com todo o teu coração, com toda a tua alma e com todas as tuas forças»",
+       "a0": 2083,
+       "a1": 2195,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap1_2083-2195_po.html",
+       "arts": [
+        {
+         "t": "Artigo I: O primeiro mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap1_2083-2195_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: O segundo mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap1_2083-2195_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: O terceiro mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap1_2083-2195_po.html#ARTIGO_3_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo segundo: «Amarás o teu próximo como a ti mesmo»",
+       "a0": 2196,
+       "a1": 2557,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html",
+       "arts": [
+        {
+         "t": "Artigo 4: O quarto mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html#ARTIGO_4_"
+        },
+        {
+         "t": "Artigo 5: O quinto mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html#ARTIGO_5_"
+        },
+        {
+         "t": "Artigo 6: O sexto mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html#ARTIGO_6_"
+        },
+        {
+         "t": "Artigo 7: O sétimo mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html#ARTIGO_7_"
+        },
+        {
+         "t": "Artigo 8: O oitavo mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html#ARTIGO_8_"
+        },
+        {
+         "t": "Artigo 9: O nono mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html#ARTIGO_9_"
+        },
+        {
+         "t": "Artigo 10: O décimo mandamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p3s2cap2_2196-2557_po.html#ARTIGO_10_"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sum": "Como viver a fé: a dignidade humana, as virtudes, a graça e os Dez Mandamentos.",
+   "a0": 1691,
+   "a1": 2557,
+   "rel": [
+    "lei-mosaica-estudo-biblico-completo",
+    "pelagianismo-a-heresia-de-pelagio-no-seculo-v"
+   ]
+  },
+  {
+   "t": "A oração cristã",
+   "u": "https://www.vatican.va/archive/cathechism_po/index_new/index-quarta-parte_po.html",
+   "secs": [
+    {
+     "t": "Oração na vida cristã",
+     "items": [
+      {
+       "t": "Introdução",
+       "a0": 2558,
+       "a1": 2565,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4-intr_2558-2565_po.html",
+       "arts": []
+      },
+      {
+       "t": "Capítulo primeiro: Revelação da oração",
+       "a0": 2566,
+       "a1": 2649,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap1_2566-2649_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: No Antigo Testamento",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap1_2566-2649_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: Na plenitude do tempo",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap1_2566-2649_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: No tempo da Igreja",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap1_2566-2649_po.html#ARTIGO_3_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo segundo: A tradição da oração",
+       "a0": 2650,
+       "a1": 2696,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap2_2650-2696_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: Nas fontes da oração",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap2_2650-2696_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: O caminho da oração",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap2_2650-2696_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: Guias para a oração",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap2_2650-2696_po.html#ARTIGO_3_"
+        }
+       ]
+      },
+      {
+       "t": "Capítulo terceiro: A vida de oração",
+       "a0": 2697,
+       "a1": 2758,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap3_2697-2758_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: As expressões da oração",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap3_2697-2758_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: O combate da oração",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s1cap3_2697-2758_po.html#ARTIGO_2_"
+        }
+       ]
+      }
+     ]
+    },
+    {
+     "t": "A oração do Senhor: «Pai Nosso»",
+     "items": [
+      {
+       "t": "O Pai-Nosso explicado",
+       "a0": 2759,
+       "a1": 2865,
+       "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s2_2759-2865_po.html",
+       "arts": [
+        {
+         "t": "Artigo 1: «O resumo de todo o Evangelho»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s2_2759-2865_po.html#ARTIGO_1_"
+        },
+        {
+         "t": "Artigo 2: «Pai nosso, que estais nos céus»",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s2_2759-2865_po.html#ARTIGO_2_"
+        },
+        {
+         "t": "Artigo 3: As sete petições",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s2_2759-2865_po.html#ARTIGO_3_"
+        },
+        {
+         "t": "A doxologia final",
+         "u": "https://www.vatican.va/archive/cathechism_po/index_new/p4s2_2759-2865_po.html#A_DOXOLOGIA_FINAL_"
+        }
+       ]
+      }
+     ]
+    }
+   ],
+   "sum": "Como rezar: a oração na Bíblia e na tradição da Igreja, e o Pai-Nosso explicado pedido por pedido.",
+   "a0": 2558,
+   "a1": 2865,
+   "rel": [
+    "oracao-pai-nosso-em-latim-e-portugues",
+    "oracao-ave-maria-em-latim-e-portugues",
+    "misterios-do-terco-rosario",
+    "magnificat"
+   ]
+  }
+ ],
+ "comp": [
+  {
+   "t": "A Profissão da Fé",
+   "q": [
+    1,
+    217
+   ],
+   "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20PROFISS%C3%83O%20DA%20F%C3%89",
+   "secs": [
+    {
+     "t": "«Eu creio» – «Nós cremos»",
+     "q": [
+      1,
+      32
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20PROFISS%C3%83O%20DA%20F%C3%89",
+     "ch": [
+      {
+       "t": "O homem é «capaz» de Deus",
+       "q0": 2,
+       "q1": 5,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#O%20HOMEM%20%C3%89%20%C2%ABCAPAZ%C2%BB%20DE%20DEUS"
+      },
+      {
+       "t": "Deus vem ao encontro do homem",
+       "q0": 6,
+       "q1": 24,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#DEUS%20VEM%20AO%20ENCONTRO%20DO%20HOMEM"
+      },
+      {
+       "t": "A resposta do homem a Deus",
+       "q0": 25,
+       "q1": 32,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20RESPOSTA%20DO%20HOMEM%20A%20DEUS"
+      }
+     ]
+    },
+    {
+     "t": "A profissão da fé cristã",
+     "q": [
+      33,
+      217
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20PROFISS%C3%83O%20DA%20F%C3%89%20CRIST%C3%83",
+     "ch": [
+      {
+       "t": "Creio em Deus Pai",
+       "q0": 33,
+       "q1": 78,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#CREIO%20EM%20DEUS%20PAI"
+      },
+      {
+       "t": "Creio em Jesus Cristo, o Filho unigênito de Deus",
+       "q0": 79,
+       "q1": 135,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#CREIO%20EM%20JESUS%20CRISTO%2C%20%20O%20FILHO%20UNIG%C3%89NITO%20DE%20DEUS"
+      },
+      {
+       "t": "Creio no Espírito Santo",
+       "q0": 136,
+       "q1": 217,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#CREIO%20NO%20ESP%C3%8DRITO%20SANTO"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "t": "A Celebração do Mistério Cristão",
+   "q": [
+    218,
+    356
+   ],
+   "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20CELEBRA%C3%87%C3%83O%20DO%20MIST%C3%89RIO%20CRIST%C3%83O",
+   "secs": [
+    {
+     "t": "A economia sacramental",
+     "q": [
+      218,
+      249
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20ECONOMIA%20SACRAMENTAL",
+     "ch": [
+      {
+       "t": "O Mistério Pascal no tempo da Igreja",
+       "q0": 221,
+       "q1": 232,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#O%20MIST%C3%89RIO%20PASCAL%20NO%20TEMPO%20%20DA%20IGREJA"
+      },
+      {
+       "t": "A celebração sacramental do Mistério Pascal",
+       "q0": 233,
+       "q1": 249,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20CELEBRA%C3%87%C3%83O%20SACRAMENTAL%20DO%20MIST%C3%89RIO%20PASCAL"
+      }
+     ]
+    },
+    {
+     "t": "Os sete sacramentos da Igreja",
+     "q": [
+      250,
+      356
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#OS%20SETE%20SACRAMENTOS%20DA%20IGREJA",
+     "ch": [
+      {
+       "t": "Os sacramentos da iniciação cristã",
+       "q0": 251,
+       "q1": 294,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#OS%20SACRAMENTOS%20DA%20INICIA%C3%87%C3%83O%20CRIST%C3%83"
+      },
+      {
+       "t": "Os sacramentos de cura",
+       "q0": 295,
+       "q1": 320,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#OS%20SACRAMENTOS%20DA%20CURA"
+      },
+      {
+       "t": "Os sacramentos ao serviço da comunhão e da missão",
+       "q0": 321,
+       "q1": 350,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#OS%20SACRAMENTOS%20AO%20SERVI%C3%87O%20%20DA%20COMUNH%C3%83O%20E%20DA%20MISS%C3%83O"
+      },
+      {
+       "t": "As outras celebrações litúrgicas",
+       "q0": 351,
+       "q1": 356,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#AS%20OUTRAS%20CELEBRA%C3%87%C3%95ES%20LIT%C3%9ARGICAS"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "t": "A Vida em Cristo",
+   "q": [
+    357,
+    533
+   ],
+   "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20VIDA%20EM%20CRISTO",
+   "secs": [
+    {
+     "t": "A vocação do homem: a vida no Espírito",
+     "q": [
+      357,
+      433
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20VOCA%C3%87%C3%83O%20DO%20HOMEM%3A%20%20A%20VIDA%20NO%20ESP%C3%8DRITO",
+     "ch": [
+      {
+       "t": "A dignidade da pessoa humana",
+       "q0": 358,
+       "q1": 400,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20DIGNIDADE%20DA%20PESSOA%20HUMANA"
+      },
+      {
+       "t": "A comunidade humana",
+       "q0": 401,
+       "q1": 414,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20COMUNIDADE%20HUMANA"
+      },
+      {
+       "t": "A salvação de Deus: a Lei e a graça",
+       "q0": 415,
+       "q1": 433,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20SALVA%C3%87%C3%83O%20DE%20DEUS%3A%20A%20LEI%20E%20A%20GRA%C3%87A"
+      }
+     ]
+    },
+    {
+     "t": "Os Dez Mandamentos",
+     "q": [
+      434,
+      533
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#OS%20DEZ%20MANDAMENTOS",
+     "ch": [
+      {
+       "t": "«Amarás o Senhor teu Deus com todo o teu coração»",
+       "q0": 442,
+       "q1": 454,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#OS%20DEZ%20MANDAMENTOS"
+      },
+      {
+       "t": "«Amarás o teu próximo como a ti mesmo»",
+       "q0": 455,
+       "q1": 533,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#%C2%ABAMAR%C3%81S%20O%20TEU%20PR%C3%93XIMO%20COMO%20A%20TI%20MESMO%C2%BB"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "t": "A Oração Cristã",
+   "q": [
+    534,
+    598
+   ],
+   "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20ORA%C3%87%C3%83O%20CRIST%C3%83",
+   "secs": [
+    {
+     "t": "A oração na vida cristã",
+     "q": [
+      534,
+      577
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20ORA%C3%87%C3%83O%20NA%20VIDA%20CRIST%C3%83",
+     "ch": [
+      {
+       "t": "A revelação da oração",
+       "q0": 535,
+       "q1": 556,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20REVELA%C3%87%C3%83O%20DA%20ORA%C3%87%C3%83O"
+      },
+      {
+       "t": "A tradição da oração",
+       "q0": 557,
+       "q1": 566,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20TRADI%C3%87%C3%83O%20DA%20ORA%C3%87%C3%83O"
+      },
+      {
+       "t": "A vida de oração",
+       "q0": 567,
+       "q1": 577,
+       "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20VIDA%20DE%20ORA%C3%87%C3%83O"
+      }
+     ]
+    },
+    {
+     "t": "A oração do Senhor: Pai-Nosso",
+     "q": [
+      578,
+      598
+     ],
+     "u": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#A%20ORA%C3%87%C3%83O%20DO%20SENHOR%3A%20%20PAI%20NOSSO",
+     "ch": []
+    }
+   ]
+  }
+ ],
+ "compIntro": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#INTRODU%C3%87%C3%83O",
+ "compApp": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html#AP%C3%8ANDICE",
+ "cicIndex": "https://www.vatican.va/archive/cathechism_po/index_new/prima-pagina-cic_po.html",
+ "compHome": "https://www.vatican.va/archive/compendium_ccc/documents/archive_2005_compendium-ccc_po.html"
+}
