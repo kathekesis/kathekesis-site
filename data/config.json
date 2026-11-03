@@ -75,5 +75,12 @@
       "url": "https://www.facebook.com/kathekesis"
     }
   ],
-  "firebase": null
+  "firebase": {
+    "apiKey": "AIzaSyDCr-3fPz1gvZbh8ZoWSNmyM4Qz6wxBFA0",
+    "authDomain": "kathekesis-13d8d.firebaseapp.com",
+    "projectId": "kathekesis-13d8d",
+    "storageBucket": "kathekesis-13d8d.firebasestorage.app",
+    "messagingSenderId": "1011035754700",
+    "appId": "1:1011035754700:web:1a002e9bf8fa6dac2ff269"
+  }
 }
