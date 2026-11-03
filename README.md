@@ -48,3 +48,18 @@ Depois abra http://localhost:8000.
    - Não é preciso contratar hospedagem na Hostinger: o site fica no GitHub Pages, de graça. Só o domínio é pago.
 
 Observação: o GitHub pausa tarefas agendadas em repositórios sem nenhuma alteração por 60 dias. Se isso acontecer, ele avisa por e-mail; basta clicar para reativar.
+
+## Área do aluno (cadastro gratuito)
+
+A página `/membros/` usa o **Firebase** (Google) para as contas, os materiais e os cursos. Enquanto `firebase` estiver `null` em `data/config.json`, a página mostra "Em breve".
+
+Configuração (uma vez só):
+
+1. Em https://console.firebase.google.com crie um projeto chamado `kathekesis` (pode desativar o Google Analytics).
+2. **Authentication → Começar**: ative os métodos **E-mail/senha** e **Google**.
+3. **Authentication → Configurações → Domínios autorizados**: adicione `kathekesis.github.io` e o domínio próprio (ex.: `kathekesis.com.br`).
+4. **Firestore Database → Criar banco de dados**: escolha o local `southamerica-east1 (São Paulo)` e o **modo de produção**.
+5. **Firestore Database → Regras**: cole o conteúdo do arquivo `firestore.rules`, troque `EMAIL-DO-ADMINISTRADOR` pelo seu e-mail do Google e clique em **Publicar**.
+6. **Configurações do projeto → Seus apps → ícone `</>` (Web)**: registre o app e copie o objeto `firebaseConfig` para o campo `firebase` de `data/config.json`. Esses dados não são secretos: a proteção vem das regras do passo 5.
+
+Para cadastrar materiais e cursos, entre em `/membros/admin/` com a conta Google do administrador.

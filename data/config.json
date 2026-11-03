@@ -24,7 +24,15 @@
     {
       "nome": "Ideias em Conserva",
       "url": "https://ideiasemconserva.com.br",
-      "categorias": [3, 32, 5, 14, 6, 11, 4],
+      "categorias": [
+        3,
+        32,
+        5,
+        14,
+        6,
+        11,
+        4
+      ],
       "tema_pelo": "categoria",
       "temas": {
         "aparicoes-de-nossa-senhora": "Nossa Senhora",
@@ -37,12 +45,35 @@
       }
     }
   ],
-  "destaques_catecismo": ["didaque-a-instrucao-dos-doze-apostolos-texto-completo"],
+  "destaques_catecismo": [
+    "didaque-a-instrucao-dos-doze-apostolos-texto-completo"
+  ],
   "loja_url": null,
   "redes": [
-    {"rede": "youtube", "nome": "YouTube", "conta": "@kathekesis", "url": "https://www.youtube.com/@kathekesis"},
-    {"rede": "instagram", "nome": "Instagram", "conta": "@kathekesis", "url": "https://www.instagram.com/kathekesis/"},
-    {"rede": "tiktok", "nome": "TikTok", "conta": "@kathekesis", "url": "https://www.tiktok.com/@kathekesis"},
-    {"rede": "facebook", "nome": "Facebook", "conta": "Kathekésis", "url": "https://www.facebook.com/kathekesis"}
-  ]
+    {
+      "rede": "youtube",
+      "nome": "YouTube",
+      "conta": "@kathekesis",
+      "url": "https://www.youtube.com/@kathekesis"
+    },
+    {
+      "rede": "instagram",
+      "nome": "Instagram",
+      "conta": "@kathekesis",
+      "url": "https://www.instagram.com/kathekesis/"
+    },
+    {
+      "rede": "tiktok",
+      "nome": "TikTok",
+      "conta": "@kathekesis",
+      "url": "https://www.tiktok.com/@kathekesis"
+    },
+    {
+      "rede": "facebook",
+      "nome": "Facebook",
+      "conta": "Kathekésis",
+      "url": "https://www.facebook.com/kathekesis"
+    }
+  ],
+  "firebase": null
 }

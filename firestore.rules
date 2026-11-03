@@ -1,0 +1,38 @@
+rules_version = '2';
+// Regras de segurança do Firestore para a Área do aluno do Kathekésis.
+// Cole este conteúdo no Firebase: Firestore Database → Regras → Publicar.
+// Troque EMAIL-DO-ADMINISTRADOR pelo e-mail da conta Google que vai administrar a área.
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function logado() { return request.auth != null; }
+    function admin() {
+      return logado() && request.auth.token.email_verified == true
+        && request.auth.token.email in ['EMAIL-DO-ADMINISTRADOR'];
+    }
+
+    // usado pela página de administração para saber se a conta é de administrador
+    match /admin/{doc} { allow read: if admin(); }
+
+    match /membros/{uid} {
+      allow read, write: if logado() && request.auth.uid == uid;
+      allow read: if admin();
+      match /progresso/{curso} {
+        allow read, write: if logado() && request.auth.uid == uid;
+      }
+    }
+
+    match /materiais/{id} {
+      allow read: if logado();
+      allow write: if admin();
+    }
+
+    match /cursos/{id} {
+      allow read: if logado();
+      allow write: if admin();
+      match /aulas/{aula} {
+        allow read: if logado();
+        allow write: if admin();
+      }
+    }
+  }
+}

@@ -310,7 +310,8 @@ def icone(rede, cls="icon"):
 
 def cabecalho():
     itens = [("Vídeos", "/#videos"), ("Formação", "/#formacao"), ("Artigos", "/#artigos"),
-             ("Catecismo", "/catecismo/"), ("Livraria", "/#livraria"), ("Sobre", "/#sobre")]
+             ("Catecismo", "/catecismo/"), ("Livraria", "/#livraria"), ("Sobre", "/#sobre"),
+             ("Área do aluno", "/membros/")]
     nav = "\n".join(f'        <li><a href="{u(h)}">{t}</a></li>' for t, h in itens)
     return f"""<header class="top">
   <div class="wrap">
@@ -340,12 +341,14 @@ def rodape():
       <li><a href="{u('/#artigos')}">Artigos</a></li>
       <li><a href="{u('/#livraria')}">Livraria</a></li>
       <li><a href="{u('/#sobre')}">Sobre</a></li>
+      <li><a href="{u('/membros/')}">Área do aluno</a></li>
+      <li><a href="{u('/privacidade/')}">Privacidade</a></li>
     </ul>
   </div>
 </footer>"""
 
 
-def pagina(titulo, descricao, caminho, corpo, canonical=None, extra=""):
+def pagina(titulo, descricao, caminho, corpo, canonical=None, extra="", scripts=(), indexar=True):
     url = SITE + caminho
     return f"""<!doctype html>
 <html lang="pt-BR">
@@ -355,6 +358,7 @@ def pagina(titulo, descricao, caminho, corpo, canonical=None, extra=""):
 <title>{esc(titulo)}</title>
 <meta name="description" content="{esc(descricao)}">
 <link rel="canonical" href="{esc(canonical or url)}">
+{'' if indexar else '<meta name="robots" content="noindex">'}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Kathekésis">
 <meta property="og:title" content="{esc(titulo)}">
@@ -373,6 +377,7 @@ def pagina(titulo, descricao, caminho, corpo, canonical=None, extra=""):
 {corpo}
 {rodape()}
 <script src="{u('/assets/site.js')}" defer></script>
+{"".join(f'<script src="{u(x)}" defer></script>' + chr(10) for x in scripts)}
 </body>
 </html>
 """
@@ -669,6 +674,191 @@ def gerar_catecismo(cat, artigos):
                   "/catecismo/", corpo)
 
 
+FB_SCRIPTS = ("/assets/vendor/firebase/firebase-app-compat.js", "/assets/vendor/firebase/firebase-auth-compat.js",
+              "/assets/vendor/firebase/firebase-firestore-compat.js", "/assets/membros.js")
+
+
+def fb_config():
+    return json.dumps(CFG.get("firebase"), ensure_ascii=False).replace("</", "<\\/")
+
+
+def bloco_entrar():
+    return f"""  <div data-view="entrar" hidden>
+    <div class="m-auth">
+      <div class="m-tabs" role="tablist">
+        <button class="m-tab" role="tab" type="button" data-tab="cadastro" aria-selected="true">Criar conta</button>
+        <button class="m-tab" role="tab" type="button" data-tab="entrar" aria-selected="false">Entrar</button>
+      </div>
+      <form id="form-cadastro" class="m-form" novalidate>
+        <label for="cad-nome">Nome</label>
+        <input id="cad-nome" name="nome" autocomplete="name" required>
+        <label for="cad-email">E-mail</label>
+        <input id="cad-email" name="email" type="email" autocomplete="email" required>
+        <label for="cad-senha">Senha <small>(mínimo de 8 caracteres)</small></label>
+        <input id="cad-senha" name="senha" type="password" autocomplete="new-password" minlength="8" required>
+        <label class="m-check"><input id="cad-aceite" type="checkbox"><span>Li e aceito a <a href="{u('/privacidade/')}" target="_blank">Política de Privacidade</a>.</span></label>
+        <label class="m-check"><input id="cad-novidades" type="checkbox"><span>Quero receber novidades do Kathekésis por e-mail.</span></label>
+        <button class="btn btn-gold-dark" type="submit">Criar minha conta</button>
+        <div class="m-ou"><span>ou</span></div>
+        <button class="btn m-google" type="button" data-msg="#cad-msg" data-aceite="#cad-aceite" data-novidades="#cad-novidades">Criar conta com o Google</button>
+        <p class="m-aviso" id="cad-msg" aria-live="polite"></p>
+      </form>
+      <form id="form-entrar" class="m-form" hidden novalidate>
+        <label for="ent-email">E-mail</label>
+        <input id="ent-email" name="email" type="email" autocomplete="email" required>
+        <label for="ent-senha">Senha</label>
+        <input id="ent-senha" name="senha" type="password" autocomplete="current-password" required>
+        <button class="btn btn-gold-dark" type="submit">Entrar</button>
+        <button class="m-link" id="ent-esqueci" type="button">Esqueci minha senha</button>
+        <div class="m-ou"><span>ou</span></div>
+        <button class="btn m-google" type="button" data-msg="#ent-msg">Entrar com o Google</button>
+        <p class="m-aviso" id="ent-msg" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>"""
+
+
+def gerar_membros():
+    corpo = f"""<main id="membros-app" class="membros" data-pagina="aluno">
+  <section class="m-hero">
+    <div class="wrap m-hero-grid">
+      <div>
+        <div class="eyebrow">área do aluno · gratuita</div>
+        <h1>Formação católica, passo a passo</h1>
+        <p class="lede">Crie sua conta gratuita para baixar os materiais do Kathekésis e fazer os cursos no seu ritmo.</p>
+        <ul class="m-beneficios">
+          <li>Apostilas, roteiros e e-books para baixar</li>
+          <li>Cursos em aulas curtas, com vídeo e texto</li>
+          <li>Seu progresso fica salvo em qualquer aparelho</li>
+        </ul>
+      </div>
+{bloco_entrar()}
+      <div data-view="carregando"><p class="m-vazio">Carregando…</p></div>
+      <div data-view="breve" hidden><div class="m-auth"><h2>Em breve</h2><p>A área do aluno está sendo preparada. Volte em alguns dias.</p></div></div>
+      <div data-view="painel" hidden><div class="m-auth m-ola"><h2>Olá, <span class="m-nome"></span>!</h2><p>Bons estudos. Seus materiais e cursos estão logo abaixo.</p><button class="m-link m-sair" type="button">Sair da conta</button></div></div>
+      <div data-view="curso" hidden></div>
+    </div>
+  </section>
+  <section data-view="painel" hidden class="m-conteudo">
+    <div class="wrap">
+      <p class="m-aviso" id="painel-msg" aria-live="polite"></p>
+      <div class="eyebrow">cursos</div>
+      <h2 class="sec-title">Seus cursos</h2>
+      <div class="m-grade" id="lista-cursos"></div>
+      <div class="eyebrow" style="margin-top: 48px;">materiais</div>
+      <h2 class="sec-title">Para baixar</h2>
+      <div class="m-grade" id="lista-materiais"></div>
+    </div>
+  </section>
+  <section data-view="curso" hidden class="m-conteudo">
+    <div class="wrap">
+      <button class="m-link" id="curso-voltar" type="button">← Voltar aos cursos</button>
+      <h2 class="sec-title" id="curso-titulo"></h2>
+      <div class="m-curso-grid">
+        <nav class="m-aulas" id="curso-aulas" aria-label="Aulas do curso"></nav>
+        <article class="m-aula" id="curso-aula"></article>
+      </div>
+    </div>
+  </section>
+</main>
+<script type="application/json" id="fb-config">{fb_config()}</script>"""
+    return pagina("Área do aluno · Kathekésis", "Crie sua conta gratuita para baixar materiais e fazer os cursos do Kathekésis.",
+                  "/membros/", corpo, scripts=FB_SCRIPTS)
+
+
+def gerar_admin():
+    tipos = "".join(f"<option>{t}</option>" for t in ["PDF", "Apostila", "E-book", "Roteiro de catequese", "Áudio", "Outro"])
+    corpo = f"""<main id="membros-app" class="membros" data-pagina="admin">
+  <section class="m-hero">
+    <div class="wrap m-hero-grid">
+      <div>
+        <div class="eyebrow">administração</div>
+        <h1>Painel da área do aluno</h1>
+        <p class="lede">Cadastre materiais, cursos e aulas, e veja quem se cadastrou. Só a conta de administrador consegue usar esta página.</p>
+      </div>
+{bloco_entrar()}
+      <div data-view="carregando"><p class="m-vazio">Carregando…</p></div>
+      <div data-view="breve" hidden><div class="m-auth"><h2>Falta configurar</h2><p>Coloque os dados do Firebase em data/config.json para ativar a área do aluno.</p></div></div>
+      <div data-view="negado" hidden><div class="m-auth"><h2>Acesso restrito</h2><p>Esta conta não é de administrador.</p><button class="m-link m-sair" type="button">Sair e entrar com outra conta</button></div></div>
+      <div data-view="admin" hidden><div class="m-auth m-ola"><h2>Olá, <span class="m-nome"></span>!</h2><p>Você está no painel de administração.</p><button class="m-link m-sair" type="button">Sair da conta</button></div></div>
+    </div>
+  </section>
+  <section data-view="admin" hidden class="m-conteudo">
+    <div class="wrap a-grid">
+      <div class="a-bloco">
+        <h2>Materiais para baixar</h2>
+        <p class="m-desc">Suba o arquivo no Google Drive, clique em Compartilhar → "Qualquer pessoa com o link" e cole o link aqui. O link só aparece para quem tem conta.</p>
+        <form id="f-material" class="m-form">
+          <label for="fm-titulo">Título</label><input id="fm-titulo" name="titulo" required>
+          <label for="fm-desc">Descrição curta</label><input id="fm-desc" name="descricao">
+          <label for="fm-tipo">Tipo</label><select id="fm-tipo" name="tipo">{tipos}</select>
+          <label for="fm-link">Link do arquivo</label><input id="fm-link" name="link" type="url" required placeholder="https://drive.google.com/...">
+          <label for="fm-ordem">Ordem na lista</label><input id="fm-ordem" name="ordem" type="number" value="1">
+          <button class="btn btn-lapis" type="submit">Adicionar material</button>
+          <p class="m-aviso" aria-live="polite"></p>
+        </form>
+        <div class="a-lista" id="a-materiais"></div>
+      </div>
+      <div class="a-bloco">
+        <h2>Cursos</h2>
+        <form id="f-curso" class="m-form">
+          <label for="fc-titulo">Nome do curso</label><input id="fc-titulo" name="titulo" required>
+          <label for="fc-desc">Descrição curta</label><input id="fc-desc" name="descricao">
+          <label for="fc-ordem">Ordem na lista</label><input id="fc-ordem" name="ordem" type="number" value="1">
+          <button class="btn btn-lapis" type="submit">Criar curso</button>
+          <p class="m-aviso" aria-live="polite"></p>
+        </form>
+        <div class="a-lista" id="a-cursos"></div>
+        <h3 style="margin-top: 28px;">Aulas</h3>
+        <form id="f-aula" class="m-form">
+          <label for="a-aula-curso">Curso</label><select id="a-aula-curso" name="curso"></select>
+          <label for="fa-titulo">Título da aula</label><input id="fa-titulo" name="titulo" required>
+          <label for="fa-video">Link do vídeo no YouTube <small>(pode ser "não listado")</small></label><input id="fa-video" name="video" placeholder="https://youtu.be/...">
+          <label for="fa-texto">Texto da aula <small>(deixe uma linha em branco entre parágrafos)</small></label><textarea id="fa-texto" name="texto" rows="6"></textarea>
+          <label for="fa-material">Link de material da aula <small>(opcional)</small></label><input id="fa-material" name="material" type="url">
+          <label for="fa-ordem">Número da aula</label><input id="fa-ordem" name="ordem" type="number" value="1">
+          <button class="btn btn-lapis" type="submit">Adicionar aula</button>
+          <p class="m-aviso" aria-live="polite"></p>
+        </form>
+        <div class="a-lista" id="a-aulas"></div>
+      </div>
+      <div class="a-bloco a-largo">
+        <h2>Pessoas cadastradas</h2>
+        <p class="m-desc" id="a-total"></p>
+        <button class="btn btn-ghost-dark" id="a-copiar" type="button">Copiar e-mails de quem aceitou novidades</button>
+        <p class="m-aviso" id="a-copiar-msg" aria-live="polite"></p>
+        <div class="a-lista" id="a-membros"></div>
+      </div>
+    </div>
+  </section>
+</main>
+<script type="application/json" id="fb-config">{fb_config()}</script>"""
+    return pagina("Administração · Kathekésis", "Painel de administração.", "/membros/admin/", corpo,
+                  scripts=FB_SCRIPTS, indexar=False)
+
+
+def gerar_privacidade():
+    hoje = datetime.date.today()
+    corpo = f"""<main class="about"><div class="wrap" style="padding-block: 64px;">
+  <div class="eyebrow">privacidade</div>
+  <h2>Política de Privacidade</h2>
+  <p><em>Atualizada em {hoje.day} de {MESES_LONGOS[hoje.month - 1]} de {hoje.year}.</em></p>
+  <p>Esta política explica como o Kathekésis trata os dados de quem cria conta na Área do aluno, de acordo com a Lei Geral de Proteção de Dados (Lei 13.709/2018).</p>
+  <h3>Quais dados coletamos</h3>
+  <p>Nome, e-mail, data do cadastro, data do último acesso, as aulas que você marcou como concluídas e se você aceitou receber novidades por e-mail. Se você entrar com o Google, recebemos o nome e o e-mail da sua conta Google. Não coletamos CPF, endereço, telefone nem dados de pagamento.</p>
+  <h3>Para que usamos</h3>
+  <p>Para dar acesso aos materiais e cursos, guardar o seu progresso e, só se você autorizar, enviar novidades do Kathekésis por e-mail. Não vendemos nem compartilhamos seus dados com terceiros para fins comerciais.</p>
+  <h3>Onde os dados ficam</h3>
+  <p>As contas e os dados ficam no Firebase, serviço do Google, que pode armazená-los em servidores fora do Brasil, com as proteções previstas na LGPD.</p>
+  <h3>Seus direitos</h3>
+  <p>Você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados, ou deixar de receber e-mails. Para isso, fale com a equipe pelo YouTube, Instagram ou Facebook do Kathekésis.</p>
+  <h3>Cookies</h3>
+  <p>A Área do aluno usa armazenamento do navegador apenas para manter você conectado. Os vídeos das aulas usam o modo de privacidade aprimorada do YouTube.</p>
+</div></main>"""
+    return pagina("Política de Privacidade · Kathekésis", "Como o Kathekésis trata os dados de quem cria conta na Área do aluno.",
+                  "/privacidade/", corpo)
+
+
 def gerar_404():
     corpo = f"""<main class="about"><div class="wrap" style="padding-block: 80px;">
   <div class="eyebrow">página não encontrada</div>
@@ -712,11 +902,17 @@ def main():
         escrever(f"artigos/{a['slug']}/index.html", gerar_artigo(a, artigos, vmap))
     em("/catecismo/")
     escrever("catecismo/index.html", gerar_catecismo(cat, artigos))
+    em("/membros/")
+    escrever("membros/index.html", gerar_membros())
+    em("/membros/admin/")
+    escrever("membros/admin/index.html", gerar_admin())
+    em("/privacidade/")
+    escrever("privacidade/index.html", gerar_privacidade())
     em("/")
     escrever("404.html", gerar_404())
 
     hoje = datetime.date.today().isoformat()
-    urls = [(SITE + "/", hoje), (SITE + "/catecismo/", hoje)]
+    urls = [(SITE + "/", hoje), (SITE + "/catecismo/", hoje), (SITE + "/membros/", hoje), (SITE + "/privacidade/", hoje)]
     # os artigos ficam fora do sitemap: o canonical deles aponta para o site parceiro
     mapa = "\n".join(f"  <url><loc>{esc(l)}</loc><lastmod>{d}</lastmod></url>" for l, d in urls)
     escrever("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{mapa}\n</urlset>\n')
