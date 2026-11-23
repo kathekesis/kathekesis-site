@@ -405,6 +405,7 @@ def gerar_inicio(videos, numeros, artigos, vmap):
     recentes = videos[:6]
     ult = videos[0]
     pub = datetime.date.fromisoformat(ult["publicado"][:10])
+    rotulo_ult = "santo do dia · novo vídeo" if (datetime.date.today() - pub).days <= 2 else "último vídeo do canal"
     loja = CFG.get("loja_url")
     loja_btn = (f'<a class="btn btn-lapis" href="{esc(loja)}" target="_blank" rel="noopener">Visitar a livraria</a>'
                 if loja else '<span class="btn btn-lapis" aria-disabled="true">Livraria em breve</span>')
@@ -440,7 +441,7 @@ def gerar_inicio(videos, numeros, artigos, vmap):
         <div class="social-hero"><span class="lbl">Siga</span>{redes_hero}</div>
       </div>
       <aside class="today" aria-label="Vídeo mais recente">
-        <div class="eyebrow">santo do dia · novo vídeo</div>
+        <div class="eyebrow">{rotulo_ult}</div>
         <div class="date">{esc(dia_festa(ult))}</div>
         <h3>{esc(limpar_titulo(ult['titulo']))}</h3>
         <p>Publicado em {pub.day} de {MESES_LONGOS[pub.month - 1]} de {pub.year}.</p>
