@@ -82,5 +82,6 @@
     "storageBucket": "kathekesis-13d8d.firebasestorage.app",
     "messagingSenderId": "1011035754700",
     "appId": "1:1011035754700:web:1a002e9bf8fa6dac2ff269"
-  }
+  },
+  "cloudflare_analytics_token": "9735ed756a11455194c57fd7ad2cae6a"
 }
