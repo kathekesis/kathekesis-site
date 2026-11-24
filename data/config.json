@@ -84,5 +84,15 @@
     "appId": "1:1011035754700:web:1a002e9bf8fa6dac2ff269"
   },
   "cloudflare_analytics_token": "9735ed756a11455194c57fd7ad2cae6a",
-  "google_analytics_id": "G-9S2L8MR9HM"
+  "google_analytics_id": "G-9S2L8MR9HM",
+  "parceira": {
+    "nome": "Cathedra Editora",
+    "url": "https://cathedraeditora.com.br/",
+    "utm": "utm_source=kathekesis&utm_medium=site&utm_campaign=parceria",
+    "lema": "Livros para a inteligência da fé",
+    "texto": "A Cathedra Editora publica clássicos da espiritualidade e do pensamento católico em edições cuidadosas, com tradução fiel, notas e ortografia atualizada, e obras novas de formação para leigos e catequistas.",
+    "destaque_capa": "https://cathedraeditora.com.br/capas/imitacao-de-cristo.jpg",
+    "destaque_titulo": "Imitação de Cristo",
+    "instagram": "https://instagram.com/cathedraeditora"
+  }
 }

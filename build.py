@@ -343,9 +343,19 @@ def rodape():
       <li><a href="{u('/#sobre')}">Sobre</a></li>
       <li><a href="{u('/membros/')}">Área do aluno</a></li>
       <li><a href="{u('/privacidade/')}">Privacidade</a></li>
+      <li><a href="{esc(link_parceira('rodape'))}" target="_blank" rel="noopener">Cathedra Editora</a></li>
     </ul>
   </div>
 </footer>"""
+
+
+P = CFG.get("parceira") or {}
+
+
+def link_parceira(onde):
+    """Link para a editora parceira, marcado para ela saber que a visita veio do Kathekésis."""
+    sep = "&" if "?" in P.get("url", "") else "?"
+    return f"{P.get('url', '')}{sep}{P.get('utm', '')}&utm_content={onde}"
 
 
 def analytics():
@@ -534,6 +544,26 @@ def gerar_inicio(videos, numeros, artigos, vmap):
     </div>
   </section>
 
+  <section id="cathedra" class="parceira">
+    <div class="wrap parceira-grid">
+      <a class="parceira-capa" href="{esc(link_parceira('capa'))}" target="_blank" rel="noopener" aria-label="{esc(P['destaque_titulo'])}, na Cathedra Editora">
+        <span class="capa-reserva" aria-hidden="true"><small>Cathedra Editora</small><b>{esc(P['destaque_titulo'])}</b><i>✠</i></span>
+        <img src="{esc(P['destaque_capa'])}" alt="Capa do livro {esc(P['destaque_titulo'])}" loading="lazy" width="300" height="450" onerror="this.remove()">
+      </a>
+      <div>
+        <div class="eyebrow">editora parceira</div>
+        <h2>{esc(P['nome'])}</h2>
+        <p class="parceira-lema">{esc(P['lema'])}</p>
+        <p>{esc(P['texto'])}</p>
+        <p>O Kathekésis e a Cathedra caminham juntos: o canal forma, a editora põe nas suas mãos os livros que formaram a inteligência cristã.</p>
+        <div class="actions">
+          <a class="btn btn-parceira" href="{esc(link_parceira('botao'))}" target="_blank" rel="noopener">Conhecer a Cathedra Editora →</a>
+          <a class="btn btn-ghost" href="{esc(P['instagram'])}" target="_blank" rel="noopener">Instagram @cathedraeditora</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <section id="sobre" class="about">
     <div class="wrap">
       <div class="eyebrow">sobre</div>
@@ -575,7 +605,7 @@ def gerar_artigo(a, artigos, vmap):
     <div class="prose">
 {a['corpo']}
     </div>
-    <div class="endnote"><p>Este artigo foi publicado originalmente no <a href="{esc(a['original'])}" target="_blank" rel="noopener">{esc(a['fonte'])}</a> e é reproduzido aqui com autorização. Quer se aprofundar? Conheça os livros da <a href="{u('/#livraria')}">Kathekésis Livraria</a>.</p></div>
+    <div class="endnote"><p>Este artigo foi publicado originalmente no <a href="{esc(a['original'])}" target="_blank" rel="noopener">{esc(a['fonte'])}</a> e é reproduzido aqui com autorização. Quer se aprofundar? Conheça os clássicos da <a href="{esc(link_parceira('artigo'))}" target="_blank" rel="noopener">Cathedra Editora</a>, nossa editora parceira.</p></div>
     <div class="related"><div class="eyebrow">continue lendo</div><h2>Mais em {esc(a['tema'])}</h2><div class="art-list">
 {rel_html}
     </div></div>
