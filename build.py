@@ -344,6 +344,7 @@ def rodape():
       <li><a href="{u('/membros/')}">Área do aluno</a></li>
       <li><a href="{u('/privacidade/')}">Privacidade</a></li>
       <li><a href="{esc(link_parceira('rodape'))}" target="_blank" rel="noopener">Cathedra Editora</a></li>
+      {'<li><a href="#" data-abrir-cookies>Cookies</a></li>' if (CFG.get("google_analytics_id") and not PREVIEW) else ''}
     </ul>
   </div>
 </footer>"""
@@ -356,6 +357,30 @@ def link_parceira(onde):
     """Link para a editora parceira, marcado para ela saber que a visita veio do Kathekésis."""
     sep = "&" if "?" in P.get("url", "") else "?"
     return f"{P.get('url', '')}{sep}{P.get('utm', '')}&utm_content={onde}"
+
+
+AVISO_COOKIES = """<div class="cookies" id="aviso-cookies" role="dialog" aria-live="polite" aria-label="Aviso de cookies" hidden>
+  <p>Usamos cookies do Google Analytics para entender quantas pessoas visitam o site e de onde vêm. Você pode aceitar ou recusar; o site funciona igual. <a href="__PRIVACIDADE__">Saiba mais</a>.</p>
+  <div class="cookies-acoes">
+    <button type="button" class="btn btn-ghost-dark" id="cookies-recusar">Recusar</button>
+    <button type="button" class="btn btn-gold-dark" id="cookies-aceitar">Aceitar</button>
+  </div>
+</div>
+<script>
+(function(){
+  var aviso=document.getElementById('aviso-cookies'), K='kathekesis-cookies';
+  function ler(){try{return localStorage.getItem(K);}catch(e){return null;}}
+  function salvar(v){try{localStorage.setItem(K,v);}catch(e){}}
+  function escolher(v){
+    salvar(v); aviso.hidden=true;
+    if(typeof gtag==='function')gtag('consent','update',{analytics_storage:v==='aceito'?'granted':'denied'});
+  }
+  document.getElementById('cookies-aceitar').onclick=function(){escolher('aceito');};
+  document.getElementById('cookies-recusar').onclick=function(){escolher('recusado');};
+  document.querySelectorAll('[data-abrir-cookies]').forEach(function(b){b.addEventListener('click',function(e){e.preventDefault();aviso.hidden=false;});});
+  if(!ler())aviso.hidden=false;
+})();
+</script>"""
 
 
 def analytics():
@@ -372,8 +397,16 @@ def analytics():
     if ga:
         if not re.fullmatch(r"G-[A-Z0-9]+", ga):
             raise SystemExit(f"google_analytics_id inválido: {ga!r} (formato G-XXXXXXXXXX)")
-        partes.append(f"""<!-- Google Analytics 4 --><script async src="https://www.googletagmanager.com/gtag/js?id={ga}"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{ga}');</script>""")
+        # Modo de consentimento: nada de cookies do Google até o visitante aceitar (LGPD)
+        partes.append(f"""<!-- Google Analytics 4 com consentimento --><script>
+window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}
+gtag('consent','default',{{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',wait_for_update:500}});
+(function(){{var c=null;try{{c=localStorage.getItem('kathekesis-cookies');}}catch(e){{}}
+if(c==='aceito')gtag('consent','update',{{analytics_storage:'granted'}});}})();
+gtag('js',new Date());gtag('config','{ga}');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={ga}"></script>
+{AVISO_COOKIES.replace("__PRIVACIDADE__", u("/privacidade/"))}""")
     return "\n".join(partes)
 
 
@@ -906,6 +939,7 @@ def gerar_privacidade():
   <h3>Cookies e estatísticas de visitas</h3>
   <p>A Área do aluno usa armazenamento do navegador apenas para manter você conectado. Os vídeos das aulas usam o modo de privacidade aprimorada do YouTube.</p>
   <p>Para saber quantas pessoas visitam o site e quais páginas são mais lidas, usamos o Cloudflare Web Analytics, que não usa cookies, e o Google Analytics, que usa cookies do Google para contar visitas e saber de onde elas vêm (por exemplo, YouTube, Instagram ou pesquisa no Google). Não ligamos essas estatísticas ao seu nome nem ao seu e-mail.</p>
+  <p>Os cookies do Google Analytics só são gravados se você clicar em <strong>Aceitar</strong> no aviso de cookies. Se recusar, o site funciona do mesmo jeito. Você pode mudar sua escolha quando quiser pelo link <strong>Cookies</strong>, no rodapé de qualquer página.</p>
 </div></main>"""
     return pagina("Política de Privacidade · Kathekésis", "Como o Kathekésis trata os dados de quem cria conta na Área do aluno.",
                   "/privacidade/", corpo)

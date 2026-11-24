@@ -387,3 +387,11 @@ img { max-width: 100%; }
 .parceira .btn-ghost { border-color: rgba(246,238,228,.5); color: #F6EEE4; }
 @media (max-width: 640px) { .parceira-grid { grid-template-columns: minmax(0, 1fr); } .parceira-capa { max-width: 180px; } }
 @media (prefers-reduced-motion: reduce) { .parceira-capa { transition: none; } .parceira-capa:hover { transform: none; } }
+
+/* Aviso de cookies */
+.cookies { position: fixed; z-index: 50; left: max(16px, env(safe-area-inset-left, 0px)); right: max(16px, env(safe-area-inset-right, 0px)); bottom: calc(16px + env(safe-area-inset-bottom, 0px)); max-width: 720px; margin: 0 auto; display: flex; gap: 14px 20px; align-items: center; flex-wrap: wrap; padding: 16px 20px; background: var(--surface); color: var(--fg); border: 1px solid var(--brand-gold); box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+.cookies p { margin: 0; flex: 1 1 320px; font-size: 1rem; line-height: 1.5; }
+.cookies a { color: var(--gold); }
+.cookies-acoes { display: flex; gap: 10px; flex-wrap: wrap; }
+.cookies .btn { border: 0; cursor: pointer; font: inherit; font-family: var(--label); letter-spacing: .05em; padding: 10px 18px; }
+footer [data-abrir-cookies] { cursor: pointer; }
