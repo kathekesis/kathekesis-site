@@ -349,13 +349,22 @@ def rodape():
 
 
 def analytics():
-    """Contador de visitas da Cloudflare (sem cookies). Fica fora da prévia."""
-    token = CFG.get("cloudflare_analytics_token")
-    if not token or PREVIEW:
+    """Contadores de visitas (Cloudflare, sem cookies, e Google Analytics 4). Ficam fora da prévia."""
+    if PREVIEW:
         return ""
-    beacon = json.dumps({"token": token})
-    return ("<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' "
-            f"data-cf-beacon='{beacon}'></script><!-- End Cloudflare Web Analytics -->")
+    partes = []
+    token = CFG.get("cloudflare_analytics_token")
+    if token:
+        beacon = json.dumps({"token": token})
+        partes.append("<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' "
+                      f"data-cf-beacon='{beacon}'></script><!-- End Cloudflare Web Analytics -->")
+    ga = (CFG.get("google_analytics_id") or "").strip()
+    if ga:
+        if not re.fullmatch(r"G-[A-Z0-9]+", ga):
+            raise SystemExit(f"google_analytics_id inválido: {ga!r} (formato G-XXXXXXXXXX)")
+        partes.append(f"""<!-- Google Analytics 4 --><script async src="https://www.googletagmanager.com/gtag/js?id={ga}"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){{dataLayer.push(arguments);}}gtag('js',new Date());gtag('config','{ga}');</script>""")
+    return "\n".join(partes)
 
 
 def pagina(titulo, descricao, caminho, corpo, canonical=None, extra="", scripts=(), indexar=True):
@@ -866,7 +875,7 @@ def gerar_privacidade():
   <p>Você pode pedir a qualquer momento acesso, correção ou exclusão dos seus dados, ou deixar de receber e-mails. Para isso, fale com a equipe pelo YouTube, Instagram ou Facebook do Kathekésis.</p>
   <h3>Cookies e estatísticas de visitas</h3>
   <p>A Área do aluno usa armazenamento do navegador apenas para manter você conectado. Os vídeos das aulas usam o modo de privacidade aprimorada do YouTube.</p>
-  <p>Para saber quantas pessoas visitam o site e quais páginas são mais lidas, usamos o Cloudflare Web Analytics. Ele não usa cookies, não identifica visitantes individualmente e não acompanha você em outros sites.</p>
+  <p>Para saber quantas pessoas visitam o site e quais páginas são mais lidas, usamos o Cloudflare Web Analytics, que não usa cookies, e o Google Analytics, que usa cookies do Google para contar visitas e saber de onde elas vêm (por exemplo, YouTube, Instagram ou pesquisa no Google). Não ligamos essas estatísticas ao seu nome nem ao seu e-mail.</p>
 </div></main>"""
     return pagina("Política de Privacidade · Kathekésis", "Como o Kathekésis trata os dados de quem cria conta na Área do aluno.",
                   "/privacidade/", corpo)

@@ -83,5 +83,6 @@
     "messagingSenderId": "1011035754700",
     "appId": "1:1011035754700:web:1a002e9bf8fa6dac2ff269"
   },
-  "cloudflare_analytics_token": "9735ed756a11455194c57fd7ad2cae6a"
+  "cloudflare_analytics_token": "9735ed756a11455194c57fd7ad2cae6a",
+  "google_analytics_id": "G-9S2L8MR9HM"
 }
